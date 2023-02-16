@@ -15,7 +15,7 @@
 
 <body class="antialiased">
     <div
-        class="relative flex items-top justify-center mt-2 h-[90vh] bg-gray-100 dark:bg-gray-900 py-4">
+        class="relative flex items-top justify-center mt-2 sbg-gray-100 dark:bg-gray-900 py-4">
         {{$content}}
     </div>
 </body>

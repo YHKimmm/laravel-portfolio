@@ -9,7 +9,7 @@
 <body>
     <x-layout>
     <x-slot name="content">
-        <div class="relative flex justify-center h-80 bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+        <div class="relative flex justify-center h-80 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             <div class="mt-6">
                 <section class="grid grid-cols-1 md:grid-cols-2 gap-2">
                     Welcome home

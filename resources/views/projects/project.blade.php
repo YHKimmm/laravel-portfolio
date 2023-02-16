@@ -10,10 +10,10 @@
     <x-layout>
     <x-slot name="content">
         <div>
-            <a href="/projects" class="text-xs"> <- Back to Projects</a>
+            <a href="/projects" class="text-xs ml-3"> <- Back to Projects</a>
             <div class="mt-6">
                 <section class="grid grid-cols-1 gap-5">
-                    <x-projects.project-card :project="$project" />
+                    <x-projects.project-card :project="$project" :showBody="true"/>
                 </section>
             </div>
         </div>

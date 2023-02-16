@@ -9,7 +9,7 @@
 <body>
     <x-layout>
     <x-slot name="content">
-        <div class="relative flex justify-center h-80 bg-gray-100 dark:bg-gray-900 items-center py-4 sm:pt-0">
+        <div class="relative flex justify-center h-80 dark:bg-gray-900 items-center py-4 sm:pt-0">
             <div class="mt-6">
                 <div class="text-center">
                     <h1 class="text-2xl">About Brayden</h1>
