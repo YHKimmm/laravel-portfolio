@@ -8,17 +8,23 @@
 </head>
 <body>
     @props(['project', 'showBody' => false])
-    <div class="p-12 bg-white overflow-hidden shadow sm:rounded-lg">
+    <div class="p-12 bg-gray-100 overflow-hidden shadow sm:rounded-lg">
         <div class="text-xl font-bold">
             <a href="/projects/{{ $project->slug }}">{{ $project->title }}</a>
         </div>
-        <div class="mt-2">{{ $project->excerpt }}</div>
         @if ($showBody)
-            <div class="mt-2">
-                @foreach (explode('</p>', $project->body) as $paragraph)
-                    <p class="my-6">{!! $paragraph !!}</p>
-                @endforeach
-            </div>
+            <img src="{{url('storage/images/project.jfif')}}" class="w-full" alt="">
+                <div class="mt-2 flex flex-col gap-2">
+                    {!! $project->body !!}
+                    {{-- @foreach (explode('</p>', $project->body) as $paragraph)
+                        <p class="my-6">{!! $paragraph !!}</p>
+                    @endforeach --}}
+                </div>
+            @else
+                <div class="flex items-center">
+                    <img src="{{url('storage/images/placeholder-image.png')}}" class="w-[20%] bg-gray-100 py-5 pr-5" alt="">
+                    <div class="mt-2">{{ $project->excerpt }}</div>
+                </div>
         @endif
     <footer class="mt-5">
         @if ($project->category)

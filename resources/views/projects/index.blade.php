@@ -28,7 +28,7 @@
                     </section>
                     <div class="text-xs w-full text-right p-2">{{ count($projects) }} projects to peep.</div>
                 @elseif (count($projects) > 0)
-                    <section class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <section class="grid grid-cols-1 gap-5">
                         @foreach ($projects as $project)
                             <x-projects.project-card :project="$project" />
                         @endforeach
