@@ -29,24 +29,11 @@
                                         <x-projects.project-card :project="$project" />
                                     @endforeach
                                 </section>
-                                @if (count($projects))
-                                    <div class="text-xs mt-4 w-full text-right">{{ $projects->links() }}</div>
-                                @endif
-                                <div class="text-xs w-full text-right p-2">{{ $projects->total() }} projects to peep.
-                                </div>
-                            @elseif (count($projects) > 0)
                                 <section class="grid grid-cols-1 gap-5">
                                     @foreach ($projects as $project)
                                         <x-projects.project-card :project="$project" />
                                     @endforeach
                                 </section>
-                                @if (count($projects))
-                                    <div class="text-xs mt-4 w-full text-right">{{ $projects->links() }}</div>
-                                @endif
-                                <div class="text-xs w-full text-right p-2">{{ $projects->total() }} projects to peep.
-                                </div>
-                            @else
-                                <div>Nothing to showcase, yet.</div>
                     @endif
                 </div>
             </div>

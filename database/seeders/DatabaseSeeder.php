@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
         // populate categories and projects table with seed data
         $this->call([
             CategorySeeder::class,
-            ProjectSeeder::class
+            ProjectSeeder::class,
+            TagSeeder::class,
         ]);
     }
 }

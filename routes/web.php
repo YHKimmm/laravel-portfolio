@@ -48,5 +48,22 @@ Route::fallback(function() {
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index']);
     Route::get('/admin/projects', [ProjectController::class, 'index']);
+    Route::get('/admin/projects/create', [ProjectController::class, 'create']);
+    Route::post('/admin/projects/create', [ProjectController::class, 'store']);
+    Route::get('/admin/projects/{project:slug}/edit', [ProjectController::class, 'edit']);
+    Route::patch('/admin/projects/{project:slug}/edit', [ProjectController::class, 'update']);
+    Route::get('/admin/projects/{project:slug}/delete', [ProjectController::class, 'destroy']);
+    Route::delete('/admin/projects/{project:slug}/delete', [ProjectController::class, 'destroy']);
     Route::get('/admin/projects/{project:slug}', [ProjectController::class, 'show']);
+   
 });
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/users/create', [AdminController::class, 'create']);
+    Route::post('/admin/users/create', [AdminController::class, 'store']);
+    Route::get('/admin/users/{user:id}/edit', [AdminController::class, 'edit']);
+    Route::patch('/admin/users/{user:id}/edit', [AdminController::class, 'update']);
+    Route::get('/admin/users/{user:id}/delete', [AdminController::class, 'destroy']);
+    Route::delete('/admin/users/{user:id}/delete', [AdminController::class, 'destroy']);
+});
+
