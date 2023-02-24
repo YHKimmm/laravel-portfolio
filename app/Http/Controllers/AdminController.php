@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\User;
+use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,6 +17,8 @@ class AdminController extends Controller
         return view('admin.index')
         ->with('projects', Project::all())
         ->with('users', User::all())
+        ->with('categories', Category::all())
+        ->with('tags', Tag::all())
         ->with('loggedInUser', $loggedInUser);
     }
 

@@ -5,6 +5,8 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TagController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +28,8 @@ Route::get('/projects/{project:slug}', [ProjectController::class, 'show']);
 
 Route::get('/about', [ProjectController::class, 'about']);
 
-Route::get('/categories/{category:slug}', [ProjectController::class, 'listByCategory']);
+Route::get('/projects/categories/{category:slug}', [ProjectController::class, 'listByCategory']);
+Route::get('/projects/tags/{tag:slug}', [ProjectController::class, 'listByTag']);
 
 Route::get('/register', [RegisterUserController::class, 'create']);
 Route::post('/register', [RegisterUserController::class, 'store']);
@@ -67,3 +70,24 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::delete('/admin/users/{user:id}/delete', [AdminController::class, 'destroy']);
 });
 
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/categories/create', [CategoryController::class, 'create']);
+    Route::post('/admin/categories/create', [CategoryController::class, 'store']);
+    Route::get('/admin/categories/{category:slug}/edit', [CategoryController::class, 'edit']);
+    Route::patch('/admin/categories/{category:slug}/edit', [CategoryController::class, 'update']);
+    Route::get('/admin/categories/{category:slug}/delete', [CategoryController::class, 'destroy']);
+    Route::delete('/admin/categories/{category:slug}/delete', [CategoryController::class, 'destroy']);
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/tags/create', [TagController::class, 'create']);
+    Route::post('/admin/tags/create', [TagController::class, 'store']);
+    Route::get('/admin/tags/{tag:slug}/edit', [TagController::class, 'edit']);
+    Route::patch('/admin/tags/{tag:slug}/edit', [TagController::class, 'update']);
+    Route::get('/admin/tags/{tag:slug}/delete', [TagController::class, 'destroy']);
+    Route::delete('/admin/tags/{tag:slug}/delete', [TagController::class, 'destroy']);
+});
+
+Route::get('/api/projects', [ProjectController::class, 'getProjectsJSON']);
+Route::get('/api/categories', [CategoryController::class, 'getCategoriesJSON']);
+Route::get('/api/tags', [TagController::class, 'getTagsJSON']);

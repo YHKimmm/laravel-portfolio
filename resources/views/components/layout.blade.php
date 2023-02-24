@@ -11,9 +11,9 @@
         <div class="flex items-center">
             @auth
                 <span class="text-xs md:text-sm font-bold uppercase">{{ auth()->user()->name }}</span>
-            @if (auth()->user()->isAdmin())
-                <a href="/admin" class="ml-4 text-xs md:text-sm font-bold uppercase">Admin</a>
-            @endif
+                @if (auth()->user()->isAdmin())
+                    <a href="/admin" class="ml-4 text-xs md:text-sm font-bold uppercase">Admin</a>
+                @endif
                 <a href="/logout" class="ml-4 text-xs md:text-sm font-bold uppercase">Logout</a>
             @else
                 <a href="/login" class="ml-4 text-xs md:text-sm font-bold uppercase">Log In</a>
@@ -39,10 +39,10 @@
 
 <body class="antialiased">
     <div class="flex justify-center items-center">
-        <div class="max-w-4xl w-full px-4 rounded-lg">
+        <div class="max-w-7xl w-full px-4 rounded-lg">
             {{ $content }}
         </div>
     </div>
 </body>
 
-<x-footer/>
+<x-footer />

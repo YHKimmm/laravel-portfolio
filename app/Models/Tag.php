@@ -15,4 +15,6 @@ class Tag extends Model
     {
         return $this->belongsToMany(Project::class, 'projects_tags', 'tags_id','projects_id');
     }
+
+    protected $fillable = ['name', 'slug'];
 }

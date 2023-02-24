@@ -13,20 +13,23 @@
         <x-slot name="content">
             <div class="relative flex justify-center sm:items-center py-4">
                 <div class="mt-6">
-                    {{-- Entire Project lists --}}
-                    @if (count($projects) > 0)
-                        <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {{-- Tag Project lists --}}
+                    @if (count($projects) > 0 && request()->is('projects/tags/*'))
+                        @php
+                            $tagName = last(request()->segments());
+                        @endphp
+                        @if ($tagName)
+                            <header>
+                                <h1 class="text-2xl font-bold text-gray-500 text-center">{{ ucfirst($tagName) }}</h1>
+                            </header>
+                        @endif
+                        <a href="/projects" class="text-xs ml-3">
+                            &lt;- Back to Projects</a>
+                        <section class="grid grid-cols-1 gap-5">
                             @foreach ($projects as $project)
                                 <x-projects.project-card :project="$project" />
                             @endforeach
                         </section>
-                        @if (count($projects))
-                            <div class="text-xs mt-4 w-full text-right">{{ $projects->links() }}</div>
-                        @endif
-                        <div class="text-xs w-full text-right p-2">{{ $projects->total() }} projects to peep.
-                        </div>
-                    @else
-                        <div>Nothing to showcase, yet.</div>
                     @endif
                 </div>
             </div>

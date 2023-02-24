@@ -3,32 +3,69 @@
 namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\User;
+use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
      public function create()
     {
-        return view('admin.users.create')
-        ->with('user', null);
+        return view('admin.categories.create')
+        ->with('category', null);
     }
 
-     public function store() {
+    public function store() {
         $attributes = request()->validate([
             'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'email_verified_at' => ['nullable','sometimes','date'],
-            'remember_token' => ['nullable'],
-            'created_at' => ['nullable','sometimes','date'],
         ]);
 
-        User::create($attributes);
+        $attributes['slug'] = Str::slug($attributes['name']);
+
+        Category::create($attributes);
         
         // Set a flash message
-        session()->flash('success','User Created Successfully');
+        session()->flash('success','New Category Created Successfully');
 
         // Redirect to the Admin Dashboard
         return redirect('/admin');
+    }
+
+    public function edit(Category $category) {
+        return view('admin.categories.create')
+        ->with('category', $category)
+        ->with('categories', Category::all());
+    }
+
+    public function update(Category $category) {
+        $attributes = request()->validate([
+            'name' => 'required',
+        ]);
+
+        $attributes['slug'] = Str::slug($attributes['name']);
+
+        $category->update($attributes);
+        
+        // Set a flash message
+        session()->flash('success','Category Updated Successfully');
+
+        // Redirect to the Admin Dashboard
+        return redirect('/admin');
+    }
+
+    public function destroy(Category $category) {
+        $category->delete();
+
+        // Set a flash message
+        session()->flash('success','Category Deleted Successfully');
+
+        // Redirect to the Admin Dashboard
+        return redirect('/admin');
+    }
+
+    public function getCategoriesJSON()
+    {
+        $categories = Category::all();
+        return response()->json($categories);
     }
 }

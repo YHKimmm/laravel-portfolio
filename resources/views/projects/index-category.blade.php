@@ -13,7 +13,8 @@
         <x-slot name="content">
             <div class="relative flex justify-center sm:items-center py-4">
                 <div class="mt-6">
-                    @if (count($projects) > 0 && request()->is('categories/*'))
+                    {{-- Category Project lists --}}
+                    @if (count($projects) > 0 && request()->is('projects/categories/*'))
                         @php
                             $categoryName = $projects[0]->category->name;
                         @endphp
@@ -24,11 +25,6 @@
                         @endif
                         <a href="/projects" class="text-xs ml-3">
                             <- Back to Projects</a>
-                                <section class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                    @foreach ($projects as $project)
-                                        <x-projects.project-card :project="$project" />
-                                    @endforeach
-                                </section>
                                 <section class="grid grid-cols-1 gap-5">
                                     @foreach ($projects as $project)
                                         <x-projects.project-card :project="$project" />
